@@ -10,4 +10,6 @@ import Foundation
 
 class ColorButton: CCNodeColor{
   var colorName: String!
+  
+  
 }

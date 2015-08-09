@@ -97,7 +97,16 @@ static const ccColor3B ccBLACK = {0,0,0};
 static const ccColor3B ccORANGE = {255,127,0};
 //! Gray Color (166,166,166)
 static const ccColor3B ccGRAY = {166,166,166};
-
+// palette colors
+static const ccColor3B paletteRed = {242,38,19};
+static const ccColor3B paletteOrange = {249,105,14};
+static const ccColor3B paletteGray = {149,165,166};
+static const ccColor3B palettePink = {246,36,89};
+static const ccColor3B palettePurple = {154,18,179};
+static const ccColor3B paletteBlue = {25,181,254};
+static const ccColor3B paletteGreen = {41,179,18};
+static const ccColor3B paletteYellow = {247,202,24};
+    
 /** RGBA color composed of 4 bytes
 */
 typedef struct _ccColor4B

@@ -176,6 +176,17 @@
 /// @name Getting Preset Colors
 /// -----------------------------------------------------------------------
 
+
++ (CCColor *) palettePurple;
++ (CCColor*) paletteBlue;
++ (CCColor*) paletteGreen;
++ (CCColor*) paletteYellow;
++ (CCColor*) paletteRed;
++ (CCColor*) paletteOrange;
++ (CCColor*) paletteGray;
++ (CCColor*) palettePink;
+
+
 /**
  *  Returns a color object whose RGB values are 0.0, 1.0, and 1.0 and whose alpha value is 1.0.
  *

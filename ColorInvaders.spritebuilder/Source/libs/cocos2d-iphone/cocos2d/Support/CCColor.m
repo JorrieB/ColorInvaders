@@ -244,6 +244,14 @@ static NSDictionary *namedColors() {
             @"purple": [CCColor colorWithRed:0.5 green:0 blue:0.5 alpha:1],
             @"brown": [CCColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1],
             @"clear": [CCColor colorWithRed:0 green:0 blue:0 alpha:0],
+            @"palettePurple": [CCColor colorWithRed:154/255.0 green:18/255.0 blue:179/255.0 alpha:1],
+            @"paletteBlue": [CCColor colorWithRed:25/255.0 green:181/255.0 blue:254/255.0 alpha:1],
+            @"paletteGreen": [CCColor colorWithRed:41/255.0 green:179/255.0 blue:18/255.0 alpha:1],
+            @"paletteYellow": [CCColor colorWithRed:247/255.0 green:202/255.0 blue:24/255.0 alpha:1],
+            @"paletteRed": [CCColor colorWithRed:242/255.0 green:38/255.0 blue:19/255.0 alpha:1],
+            @"paletteOrange": [CCColor colorWithRed:249/255.0 green:105/255.0 blue:14/255.0 alpha:1],
+            @"paletteGray": [CCColor colorWithRed:149/255.0 green:165/255.0 blue:166/255.0 alpha:1],
+            @"palettePink": [CCColor colorWithRed:246/255.0 green:36/255.0 blue:89/255.0 alpha:1],
         };
     });
     return namedColors;
@@ -264,6 +272,18 @@ static NSDictionary *namedColors() {
 + (CCColor*) purpleColor { return namedColors()[@"purple"]; }
 + (CCColor*) brownColor { return namedColors()[@"brown"]; }
 + (CCColor*) clearColor { return namedColors()[@"clear"]; }
++ (CCColor*) palettePurple { return namedColors()[@"palettePurple"]; }
++ (CCColor*) paletteBlue { return namedColors()[@"paletteBlue"]; }
++ (CCColor*) paletteGreen { return namedColors()[@"paletteGreen"]; }
++ (CCColor*) paletteYellow { return namedColors()[@"paletteYellow"]; }
++ (CCColor*) paletteRed { return namedColors()[@"paletteRed"]; }
++ (CCColor*) paletteOrange { return namedColors()[@"paletteOrange"]; }
++ (CCColor*) paletteGray { return namedColors()[@"paletteGray"]; }
++ (CCColor*) palettePink { return namedColors()[@"palettePink"]; }
+
+
+
+
 
 @end
 
