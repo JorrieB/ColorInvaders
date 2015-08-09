@@ -15,10 +15,8 @@ class Background: CCNodeColor{
     if color != to && !inTransition{
       inTransition = true
       var transition = CCActionTintTo(duration: transitionTime, color: to)
-      var delay = CCActionDelay(duration: transitionTime + 0.002)
       var resetTransition = CCActionCallBlock(block: {self.inTransition = false})
-      runAction(transition)
-      runAction(CCActionSequence(array: [delay,resetTransition]))
+      runAction(CCActionSequence(array: [transition,resetTransition]))
       return true
     }
     return false
