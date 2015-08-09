@@ -6,10 +6,8 @@
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
-import Foundation
-
 class Background: CCNodeColor{
-  var transitionTime = 0.02
+  var transitionTime = 0.04
   var inTransition = false
   func changeColor(to: CCColor) -> Bool{
     if color != to && !inTransition{
@@ -19,6 +17,18 @@ class Background: CCNodeColor{
       runAction(CCActionSequence(array: [transition,resetTransition]))
       return true
     }
+    return false
+  }
+  
+  func overwriteColorChange(withColor: CCColor) -> Bool{
+    if withColor != color{
+      stopAllActions()
+      var transition = CCActionTintTo(duration: transitionTime, color: withColor)
+      runAction(transition)
+      inTransition = false
+      return true
+    }
+    
     return false
   }
 }
