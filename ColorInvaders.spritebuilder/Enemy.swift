@@ -28,7 +28,7 @@ class Enemy: CCNode{
   
   override func update(delta: CCTime) {
     position.y -= speed
-    if (Float(position.y) - Float(contentSizeInPoints.height) * Float(scale)) < Float(screenSize.height) * 0.12 {
+    if (Float(position.y) + Float(contentSizeInPoints.height) * Float(scale)) < Float(screenSize.height) * 0.12 {
       delegate.enemyPassed()
       removeFromParent()
     }
@@ -45,7 +45,7 @@ class Enemy: CCNode{
   func check(withColor:CCColor) -> Bool{
     if withColor == layerArray[layerArray.count - 1].color{
       println("Jorrie")
-      layerArray.removeLast().removeFromParent()
+      layerArray.removeLast().runAction(CCActionFadeOut(duration: 0.04))
       return !Bool(layerArray.count)
     }
     return false
