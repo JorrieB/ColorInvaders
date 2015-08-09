@@ -49,6 +49,7 @@ class MainScene: CCNode {
     schedule("spawnTriangle", interval: 3)
     
   }
+  
   func retry(){
     CCDirector.sharedDirector().replaceScene(CCBReader.loadAsScene("MainScene"))
   }
