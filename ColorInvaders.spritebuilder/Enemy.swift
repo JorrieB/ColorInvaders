@@ -12,13 +12,13 @@ class Enemy: CCNode{
   var base: CCSprite!
   var shouldBeRemoved = false
   var delegate: EnemyDelegate!
-  var layerArray = [CCSprite]()
+  var layerArray = [CCColor]()
   var score = 0
   var speed : CGFloat = 0
   
   func didLoadFromCCB(){
     base.color = CCColor.paletteGray()
-    layerArray.append(base)
+    layerArray.append(CCColor.paletteGray())
   }
   
   override func onEnter() {
@@ -34,7 +34,8 @@ class Enemy: CCNode{
     }
   }
   
-  func positionSelf(){
+  func positionSelf() {
+    position = ccp(CGFloat(CGFloat(arc4random_uniform(UInt32(screenSize.width - contentSizeInPoints.width * CGFloat(scale)))) + contentSizeInPoints.width / 2 * CGFloat(scale)), screenSize.height + contentSizeInPoints.height * CGFloat(scale))
   }
   
   func setColors(forPart:Int){
@@ -43,13 +44,15 @@ class Enemy: CCNode{
   
   //run a check with the current background color. Return whether or not it is still alive.
   func check(withColor:CCColor) -> Bool{
-    if withColor == layerArray[layerArray.count - 1].color{
-      println("Jorrie")
-      layerArray.removeLast().runAction(CCActionFadeOut(duration: 0.04))
+    if withColor == layerArray[layerArray.count - 1]{
+      layerArray.removeLast()
+      nextColor()
       return !Bool(layerArray.count)
     }
     return false
   }
+  
+  func nextColor(){}
   
   func removeAnimation(){
     removeFromParent()

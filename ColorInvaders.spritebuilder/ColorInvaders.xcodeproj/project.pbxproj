@@ -97,6 +97,7 @@
 		CC3E46721B76DAA300E3F9CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3E46711B76DAA300E3F9CE /* Images.xcassets */; };
 		CC3E46741B76E0CC00E3F9CE /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E46731B76E0CC00E3F9CE /* Background.swift */; };
 		CC3E46761B77A3DF00E3F9CE /* SprintCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E46751B77A3DF00E3F9CE /* SprintCircle.swift */; };
+		CC3E46801B77D7A700E3F9CE /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E467F1B77D7A700E3F9CE /* Triangle.swift */; };
 		CCD6EDD81B74549000005E7C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD6EDD71B74549000005E7C /* GameKit.framework */; };
 		CCD6EDDA1B74549300005E7C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD6EDD91B74549200005E7C /* StoreKit.framework */; };
 		CCDDC0CB1B742BB80079CE69 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDDC0CA1B742BB80079CE69 /* ColorButton.swift */; };
@@ -221,6 +222,7 @@
 		CC3E46711B76DAA300E3F9CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "ColorInvaders iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		CC3E46731B76E0CC00E3F9CE /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		CC3E46751B77A3DF00E3F9CE /* SprintCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SprintCircle.swift; sourceTree = "<group>"; };
+		CC3E467F1B77D7A700E3F9CE /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		CCD6EDD71B74549000005E7C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CCD6EDD91B74549200005E7C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CCDDC0CA1B742BB80079CE69 /* ColorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 			children = (
 				CC3E466D1B76D6E900E3F9CE /* Enemy.swift */,
 				CC3E46751B77A3DF00E3F9CE /* SprintCircle.swift */,
+				CC3E467F1B77D7A700E3F9CE /* Triangle.swift */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				CCDDC0CB1B742BB80079CE69 /* ColorButton.swift in Sources */,
 				CC3E46741B76E0CC00E3F9CE /* Background.swift in Sources */,
+				CC3E46801B77D7A700E3F9CE /* Triangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

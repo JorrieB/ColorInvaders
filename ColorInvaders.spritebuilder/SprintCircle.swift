@@ -16,27 +16,27 @@ class SprintCircle: Enemy {
     speed = 2
     scale = 0.5
     
-    layerArray.append(outerLayer)
-  }
-  
-  override func positionSelf() {
-    position = ccp(CGFloat(CGFloat(arc4random_uniform(UInt32(screenSize.width - outerLayer.contentSizeInPoints.width * CGFloat(scale)))) + outerLayer.contentSizeInPoints.width / 2 * CGFloat(scale)), screenSize.height + outerLayer.contentSizeInPoints.height * CGFloat(scale))
   }
   
   override func setColors(forPart:Int){
     var colorsToChooseFrom = [CCColor.paletteBlue(),CCColor.paletteRed(),CCColor.paletteYellow()]
-    if forPart == 1 {
-      var whichColor = Int(arc4random_uniform(3))
-      outerLayer.color = colorsToChooseFrom[whichColor]
-    } else if forPart == 2{
+    if forPart == 2{
       colorsToChooseFrom.append(CCColor.palettePurple())
-      var whichColor = Int(arc4random_uniform(4))
-      outerLayer.color = colorsToChooseFrom[whichColor]
-    } else {
+    } else if forPart == 3 {
+      colorsToChooseFrom.append(CCColor.palettePurple())
       colorsToChooseFrom.append(CCColor.paletteOrange())
       colorsToChooseFrom.append(CCColor.paletteGreen())
-      var whichColor = Int(arc4random_uniform(6))
-      outerLayer.color = colorsToChooseFrom[whichColor]
+    }
+    
+    var whichColor = Int(arc4random_uniform(UInt32(colorsToChooseFrom.count)))
+    outerLayer.color = colorsToChooseFrom[whichColor]
+    
+    layerArray.append(outerLayer.color)
+  }
+  
+  override func nextColor() {
+    if layerArray.count == 1 {
+      outerLayer.runAction(CCActionFadeOut(duration: 0.03))
     }
   }
   

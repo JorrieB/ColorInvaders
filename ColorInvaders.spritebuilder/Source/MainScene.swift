@@ -17,8 +17,12 @@ class MainScene: CCNode {
   weak var rightButton: ColorButton!
   weak var scoreLabel: CCLabelTTF!
   
+  weak var comboLabel: CCLabelTTF!
+
+  
   //MARK: Prototype variables
   weak var retryButton: CCButton!
+  var gamePhase = 1
   
   let screenSize = UIScreen.mainScreen().bounds
   
@@ -28,6 +32,7 @@ class MainScene: CCNode {
   var score = 0 { didSet{ scoreLabel.string = "Score: \(score)" } }
   
   func didLoadFromCCB(){
+    score = 0
     retryButton.enabled = false
     userInteractionEnabled = true
     
@@ -41,6 +46,7 @@ class MainScene: CCNode {
     background.color = CCColor.paletteGray()
     
     schedule("spawnCircle", interval: 1)
+    schedule("spawnTriangle", interval: 3)
     
   }
   func retry(){
@@ -90,6 +96,11 @@ class MainScene: CCNode {
       }
     }
     score += scoreIncrease * combo
+    if combo > 1 {
+      comboLabel.string = "Combo x\(combo)"
+      animationManager.runAnimationsForSequenceNamed("Combo")
+    }
+    
   }
   
   //MARK: Touch functions
@@ -112,14 +123,21 @@ class MainScene: CCNode {
   
   func spawnCircle(){
     var circle = CCBReader.load("Enemies/SprintCircle") as! Enemy
-    circle.setColors(1)
+    circle.setColors(gamePhase)
     circle.delegate = self
     enemyArray.append(circle)
     addChild(circle)
     circle.check(background.color)
-
   }
-
+  
+  func spawnTriangle(){
+    var triangle = CCBReader.load("Enemies/Triangle") as! Enemy
+    triangle.setColors(gamePhase)
+    triangle.delegate = self
+    enemyArray.append(triangle)
+    addChild(triangle)
+    triangle.check(background.color)
+  }
 }
 
 extension MainScene: EnemyDelegate{
