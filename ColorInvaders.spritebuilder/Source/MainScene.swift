@@ -10,6 +10,9 @@ import Foundation
 
 class MainScene: CCNode {
   
+  var circleSpeed : CGFloat = 1.0
+  var triangleSpeed : CGFloat = 1.0
+  
   //MARK: Touch variables
   var touch1: CCTouch!
   var touch2: CCTouch!
@@ -26,7 +29,7 @@ class MainScene: CCNode {
   
   //MARK: Prototype variables
   weak var retryButton: CCButton!
-  var gamePhase = 3
+  var gamePhase = 1
   
   let screenSize = UIScreen.mainScreen().bounds
   
@@ -50,9 +53,75 @@ class MainScene: CCNode {
     rightButton.color = CCColor.paletteBlue()
     background.color = CCColor.paletteGray()
     
-    schedule("spawnCircle", interval: 1.5)
-    schedule("spawnTriangle", interval: 4)
-    
+
+    phase1()
+    scheduleOnce("phase2", delay: 35)
+  
+  }
+  
+  func phase1(){
+    schedule("spawnCircle", interval: 1, repeat: 2, delay: 0)
+    var minorDelay = CCActionDelay(duration: 3)
+    var nextCircles = CCActionCallBlock(block: {schedule("spawnCircle", interval: 0.5, repeat: 10, delay: 5)})
+    runAction(CCActionSequence(array: [minorDelay,nextCircles]))
+    scheduleOnce("spawnTriangle", delay: 16)
+    var gameDelay = CCActionDelay(duration: 20)
+    var scheduleGame = CCActionCallBlock(block: {self.circleSpeed = 2; self.schedule("spawnCircle", interval: 0.5); self.schedule("spawnTriangle", interval:4)})
+    runAction(CCActionSequence(array: [gameDelay, scheduleGame]))
+  }
+  
+  func phase2(){
+    unscheduleAllSelectors()
+    gamePhase = 2
+    schedule("spawnPurpleCircle", interval: 1, repeat: 2, delay: 3)
+    circleSpeed = 1.5
+    var delay = CCActionDelay(duration: 9)
+    var scheduleGame = CCActionCallBlock(block: {self.schedule("spawnCircle", interval: 0.65); self.schedule("spawnTriangle", interval: 3.5)})
+    var longerDelay = CCActionDelay(duration: 25)
+    var nextBlock = CCActionCallBlock(block: {self.phase3()})
+    runAction(CCActionSequence(array: [delay,scheduleGame, longerDelay, nextBlock]))
+  }
+  
+  func phase3(){
+    unscheduleAllSelectors()
+    gamePhase = 3
+    schedule("spawnOrangeCircle", interval: 1, repeat: 2, delay: 3)
+    schedule("spawnGreenCircle", interval: 1, repeat: 2, delay: 3.5)
+    var delay = CCActionDelay(duration: 9)
+    var scheduleGame = CCActionCallBlock(block: {self.schedule("spawnCircle", interval: 0.65); self.schedule("spawnTriangle", interval: 3.5)})
+    runAction(CCActionSequence(array: [delay,scheduleGame]))
+  }
+  
+  func circleSpeedIncrease(){ circleSpeed += 0.5 }
+  func circleSpeedDecrease(){ circleSpeed -= 0.5 }
+  func triangleSpeedIncrease(){ triangleSpeed += 0.5 }
+  func triangleSpeedDecrease(){ triangleSpeed -= 0.5 }
+  func spawnPurpleCircle(){
+    var circle = CCBReader.load("Enemies/SprintCircle") as! SprintCircle
+    circle.speed = 0.75
+    circle.makePurple()
+    circle.delegate = self
+    enemyArray.append(circle as Enemy)
+    addChild(circle)
+    circle.check(background.color)
+  }
+  func spawnGreenCircle(){
+    var circle = CCBReader.load("Enemies/SprintCircle") as! SprintCircle
+    circle.speed = 0.75
+    circle.makeGreen()
+    circle.delegate = self
+    enemyArray.append(circle as Enemy)
+    addChild(circle)
+    circle.check(background.color)
+  }
+  func spawnOrangeCircle(){
+    var circle = CCBReader.load("Enemies/SprintCircle") as! SprintCircle
+    circle.speed = 0.75
+    circle.makeOrange()
+    circle.delegate = self
+    enemyArray.append(circle as Enemy)
+    addChild(circle)
+    circle.check(background.color)
   }
   
   func retry(){
@@ -212,6 +281,7 @@ class MainScene: CCNode {
   
   func spawnCircle(){
     var circle = CCBReader.load("Enemies/SprintCircle") as! Enemy
+    circle.speed = circleSpeed
     circle.setColors(gamePhase)
     circle.delegate = self
     enemyArray.append(circle)
@@ -221,6 +291,7 @@ class MainScene: CCNode {
   
   func spawnTriangle(){
     var triangle = CCBReader.load("Enemies/Triangle") as! Enemy
+    triangle.speed = triangleSpeed
     triangle.setColors(gamePhase)
     triangle.delegate = self
     enemyArray.append(triangle)
@@ -231,6 +302,7 @@ class MainScene: CCNode {
 
 extension MainScene: EnemyDelegate{
   func enemyPassed() {
+    unscheduleAllSelectors()
     retryButton.enabled = true
     userInteractionEnabled = false
     multipleTouchEnabled = false

@@ -34,6 +34,21 @@ class SprintCircle: Enemy {
     layerArray.append(outerLayer.color)
   }
   
+  func makePurple(){
+    outerLayer.color = CCColor.palettePurple()
+    layerArray.append(CCColor.palettePurple())
+  }
+  
+  func makeGreen(){
+    outerLayer.color = CCColor.paletteGreen()
+    layerArray.append(CCColor.paletteGreen())
+  }
+  
+  func makeOrange(){
+    outerLayer.color = CCColor.paletteOrange()
+    layerArray.append(CCColor.paletteOrange())
+  }
+  
   override func nextColor() {
     if layerArray.count == 1 {
       outerLayer.runAction(CCActionFadeOut(duration: 0.03))
